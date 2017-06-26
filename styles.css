@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Source+Code+Pro:200|Anonymous+Pro');
 html,
 body {
     width: 100%;
@@ -6,41 +7,76 @@ body {
 
 body {
     background-color: #5B507A;
+    text-align: center;
+    font-family: 'Anonymous Pro', monospace;
+    color: white;
+}
+
+a,
+a:hover {
+    color: white;
+}
+
+h1 {
+    font-size: 2rem;
+    font-weight: 300;
+    line-height: 1.1;
+    font-family: 'Pacifico';
+}
+
+h3 {
+    font-size: 1rem;
+    margin-bottom: 2rem;
 }
 
 .table td {
     text-align: center;
     vertical-align: middle;
-    font-size: 3rem;
+    font-size: 2rem;
     width: 100px;
     height: 100px;
     padding: 0;
 }
 
+@media (min-width: 300px) {
+    h1 {
+        font-size: 2rem;
+    }
+    h3 {
+        font-size: 1rem;
+    }
+    .table td {
+        font-size: 3rem;
+        width: 100px;
+        height: 100px;
+    }
+}
+
 @media (min-width: 576px) {
+    h1 {
+        font-size: 2.75rem;
+    }
+    h3 {
+        font-size: 1.5rem;
+    }
     .table td {
         font-size: 4rem;
         width: 125px;
         height: 125px;
-        max-width: 100%;
     }
 }
 
 @media (min-width: 768px) {
+    h1 {
+        font-size: 3.75rem;
+    }
+    h3 {
+        font-size: 2rem;
+    }
     .table td {
         font-size: 5rem;
-        width: 150px;
-        height: 150px;
-        max-width: 100%;
-    }
-}
-
-@media (min-width: 992px) {
-    .table td {
-        font-size: 6rem;
-        width: 175px;
-        height: 175px;
-        max-width: 100%;
+        width: 140px;
+        height: 140px;
     }
 }
 
@@ -48,15 +84,14 @@ body {
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
     align-items: center;
 }
-
 
 .table {
     margin-bottom: 0;
     background-color: #49475B;
-
     /*
     49475B
     E3C567
@@ -69,6 +104,27 @@ body {
     border: 1px solid #848C8E;
 }
 
+.header {
+    margin-top: 1rem;
+}
+
+.footer {
+    font-size: 0.8rem;
+    padding: 0.5rem;
+}
+
+#player1,
+#player2 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between
+}
+
+#results {
+    padding: 0.2rem 0.5rem;
+    display: flex;
+    justify-content: space-between;
+}
 
 #game {
     /*

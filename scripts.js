@@ -1,8 +1,4 @@
-$(document).ready(function () {
-    $("#game-board").removeClass("d-none");
-    $("#game").css("width", "auto");
-    $("#game").css("height", "auto");
-});
+$(document).ready(function () {});
 
 
 

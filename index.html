@@ -15,18 +15,34 @@
 <body>
 
     <div class="content-wrapper">
-        <section id="game">
 
-            <table id="game-board" class="table table-bordered d-none">
+        <header class="header">
+            <h1>Tic-Tac-Toe</h1>
+            <h3>Monkey vs banana</h3>
+        </header>
+        <section id="game">
+            <div id="results">
+                <div id="player1">
+                    <span id="player1-name">Player</span>
+                    <span id="player1-score">0</span>
+                </div>
+                <span>&nbsp;:&nbsp;</span>
+                <div id="player2">
+                    <span id="player2-score">0</span>
+                    <span id="player2-name">Computer</span>
+                </div>
+            </div>
+
+            <table id="game-board" class="table table-bordered">
                 <tr>
                     <td>
-                        &#127826;
+                        &#128018;
                     </td>
-                    <td>&#128018;</td>
-                    <td>&#128023;</td>
+                    <td>&#127820;</td>
+                    <td></td>
                 </tr>
                 <tr>
-                    <td>&#127849;</td>
+                    <td>&#128012;</td>
                     <td>&#127820;</td>
                     <td>&#128125;</td>
                 </tr>
@@ -35,11 +51,15 @@
                     </td>
                     <td>&#128013;
                     </td>
-                    <td>&#128053;
+                    <td>&#128126;
                     </td>
                 </tr>
             </table>
         </section>
+
+        <footer class="footer">
+            Developed by Dmytro Plekhotkin
+        </footer>
     </div>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="jquery-3.2.1.min.js"></script>
