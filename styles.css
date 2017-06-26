@@ -38,6 +38,12 @@ h3 {
     padding: 0;
 }
 
+#game-menu,
+#game {
+    width: 301px;
+    height: 301px;
+}
+
 @media (min-width: 300px) {
     h1 {
         font-size: 2rem;
@@ -49,6 +55,11 @@ h3 {
         font-size: 3rem;
         width: 100px;
         height: 100px;
+    }
+    #game-menu,
+    #game {
+        width: 301px;
+        height: 301px;
     }
 }
 
@@ -64,6 +75,11 @@ h3 {
         width: 125px;
         height: 125px;
     }
+    #game-menu,
+    #game {
+        width: 376px;
+        height: 376px;
+    }
 }
 
 @media (min-width: 768px) {
@@ -77,6 +93,10 @@ h3 {
         font-size: 5rem;
         width: 140px;
         height: 140px;
+    }
+    #game-menu {
+        width: 420px;
+        height: 420px;
     }
 }
 
