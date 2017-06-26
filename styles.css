@@ -4,6 +4,10 @@ body {
     height: 100%;
 }
 
+body {
+    background-color: #5B507A;
+}
+
 .table td {
     text-align: center;
     vertical-align: middle;
@@ -49,4 +53,28 @@ body {
 }
 
 
-#game {}
+.table {
+    margin-bottom: 0;
+    background-color: #49475B;
+
+    /*
+    49475B
+    E3C567
+    848C8E
+    C4CAD0
+    */
+}
+
+.table-bordered td {
+    border: 1px solid #848C8E;
+}
+
+
+#game {
+    /*
+        border-top: 10px solid #EB37AC;
+        border-bottom: 10px solid #FBAF29;
+        border-right: 10px solid #00D497;
+        border-left: 10px solid #4285F4;
+*/
+}
