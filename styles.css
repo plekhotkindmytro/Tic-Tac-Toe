@@ -38,10 +38,32 @@ h3 {
     padding: 0;
 }
 
+
+
+.player-icon {
+    cursor: pointer;
+    border: 1px dashed rgba(0, 0, 0, 0);
+    border-radius: 50%;
+    padding: 0.5rem;
+}
+
+.player-icon:hover {
+    border-color: #fff;
+}
+
 #game-menu,
 #game {
     width: 301px;
     height: 301px;
+    font-size: 2rem;
+}
+
+#game-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    border: 1px dashed #fff
 }
 
 @media (min-width: 300px) {
@@ -94,7 +116,8 @@ h3 {
         width: 140px;
         height: 140px;
     }
-    #game-menu {
+    #game-menu,
+    #game {
         width: 420px;
         height: 420px;
     }
