@@ -154,6 +154,10 @@ h3 {
     padding: 0.5rem;
 }
 
+.filled-cell {
+    pointer-events: none;
+}
+
 #player1,
 #player2 {
     width: 100%;

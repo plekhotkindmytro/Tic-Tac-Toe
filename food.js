@@ -112,3 +112,10 @@ var food = [
         "name": "lollipop"
    }
 ];
+
+var banana = food.reduce(function (prev, curr) {
+    if (curr.name === "banana") {
+        return curr.sign;
+    }
+    return prev;
+});

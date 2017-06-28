@@ -159,3 +159,10 @@ var creatures = [{
         "sign": "&#128034;",
         "name": "turtle"
 }];
+
+var monkey = creatures.reduce(function (prev, curr) {
+    if (curr.name === "monkey") {
+        return curr.sign;
+    }
+    return prev;
+});
