@@ -50,7 +50,12 @@ function playSymbol() {
     $("#" + pos).addClass("filled-cell");
     board[pos] = 1;
 
-    playComputer();
+    if (isGameFinished()) {
+
+    } else {
+        playComputer();
+    }
+
 }
 
 function playComputer() {
@@ -67,6 +72,18 @@ function playComputer() {
     $("#" + rand).html(game.getPlayer2Icon());
     $("#" + rand).addClass("filled-cell");
     board[rand] = 2;
+
+    if (isGameFinished()) {
+
+    }
+}
+
+function isGameFinished() {
+    var finish = false;
+
+    // TODO: 
+
+    return finish;
 }
 
 function savePlayerIcon(callback) {
