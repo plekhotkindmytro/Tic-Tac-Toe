@@ -8,6 +8,7 @@ $(document).ready(function () {
 
 var icons = ["🐒", "🍌"];
 var board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+var result = [0, 0];
 
 var Game = function () {
     var player1 = {
@@ -48,10 +49,16 @@ function playSymbol() {
     $(this).html(game.getPlayer1Icon());
     var pos = $(this).attr("id");
     $("#" + pos).addClass("filled-cell");
-    board[pos] = 1;
+    board[pos] = game.getPlayer1Icon();
 
-    if (isGameFinished()) {
-
+    var winner = getWinner();
+    if (winner) {
+        alert(winner);
+        saveResult(winner);
+        clearCells();
+    } else if (isTie()) {
+        alert("Tie!");
+        clearCells();
     } else {
         playComputer();
     }
@@ -71,19 +78,67 @@ function playComputer() {
     console.log(rand);
     $("#" + rand).html(game.getPlayer2Icon());
     $("#" + rand).addClass("filled-cell");
-    board[rand] = 2;
+    board[rand] = game.getPlayer2Icon();
 
-    if (isGameFinished()) {
-
+    var winner = getWinner();
+    if (winner) {
+        alert(winner);
+        saveResult(winner);
+        clearCells();
+    } else if (isTie()) {
+        alert("Tie!");
+        clearCells();
     }
 }
 
-function isGameFinished() {
-    var finish = false;
+function saveResult(winner) {
+    var playerIndex = winner === icons[0] ? 0 : 1;
+    result[playerIndex] += 1;
+    showResult();
+}
 
-    // TODO: 
+function showResult() {
+    $("#player1-score").text(result[0]);
+    $("#player2-score").text(result[1]);
+}
 
-    return finish;
+var winConditions = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+];
+
+function getWinner() {
+    var winner;
+
+    winConditions.some(function (condition) {
+        if (isLineCrossed(condition)) {
+            winner = board[condition[0]];
+            return true;
+        }
+    });
+
+    return winner;
+}
+
+function isTie() {
+    var tie = true;
+    for (var i = 0; i < board.length; i++) {
+        if (board[i] === 0) {
+            tie = false;
+            break;
+        }
+    }
+    return tie;
+}
+
+function isLineCrossed(condition) {
+    return board[condition[0]] === board[condition[1]] && board[condition[1]] === board[condition[2]];
 }
 
 function savePlayerIcon(callback) {
@@ -102,16 +157,24 @@ function savePlayerIcon(callback) {
 function resetAll(callback) {
     return function () {
         clearCells();
-
+        clearResult();
 
 
         callback();
     }
 }
 
+function clearResult() {
+    result = [0, 0];
+    $("#player1-score").text(0);
+    $("#player2-score").text(0);
+}
+
 function clearCells() {
     $("#game-board tr td").text("");
     $("#game-board tr td").removeClass("filled-cell");
+    $("#game-board tr td").removeClass("winning-cell");
+    board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 }
 
 function showGameBoard() {

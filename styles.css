@@ -158,6 +158,10 @@ h3 {
     pointer-events: none;
 }
 
+.winning-cell {
+    background-color: white;
+}
+
 #player1,
 #player2 {
     width: 100%;
