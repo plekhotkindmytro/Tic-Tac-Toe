@@ -181,8 +181,20 @@ function showGameBoard() {
     clearCells();
 
     $("#game-menu").hide("fade", {}, "slow", function () {
-        $("#game-board").show("fade", {}, "slow");
+        $("#game-board").show("fade", {}, "slow", function () {
+            if (game.getPlayer1Icon() === icons[1]) {
+                setPlayerNames("Computer", "Human");
+                playComputer();
+            } else {
+                setPlayerNames("Human", "Computer");
+            }
+        });
     });
+}
+
+function setPlayerNames(player1, player2) {
+    $("#player1-name").text(player1);
+    $("#player2-name").text(player2);
 }
 
 function showGameMenu() {
