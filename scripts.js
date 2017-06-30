@@ -46,8 +46,13 @@ var Game = function () {
 var game = new Game();
 
 var isEnd = false;
+var computerTurn = false;
 
 function playSymbol() {
+    if (computerTurn) {
+        return;
+    }
+
     if (isEnd) {
         clearCells();
         return;
@@ -71,32 +76,36 @@ function playSymbol() {
 }
 
 function playComputer() {
-    if (isEnd) {
-        return;
-    }
+    computerTurn = true;
+    setTimeout(function () {
 
-
-    var clearBoard = board.reduce(function (prev, curr, i) {
-        if (curr === 0) {
-            prev.push(i);
+        if (isEnd) {
+            return;
         }
 
-        return prev;
-    }, []);
 
-    var rand = clearBoard[Math.floor(Math.random() * clearBoard.length)];
-    console.log(rand);
-    $("#" + rand).html(game.getPlayer2Icon());
-    $("#" + rand).addClass("filled-cell");
-    board[rand] = game.getPlayer2Icon();
+        var clearBoard = board.reduce(function (prev, curr, i) {
+            if (curr === 0) {
+                prev.push(i);
+            }
 
-    var winner = getWinner();
-    if (winner) {
-        saveResult(winner);
-        isEnd = true;
-    } else if (isTie()) {
-        isEnd = true;
-    }
+            return prev;
+        }, []);
+
+        var rand = clearBoard[Math.floor(Math.random() * clearBoard.length)];
+        $("#" + rand).html(game.getPlayer2Icon());
+        $("#" + rand).addClass("filled-cell");
+        board[rand] = game.getPlayer2Icon();
+
+        var winner = getWinner();
+        if (winner) {
+            saveResult(winner);
+            isEnd = true;
+        } else if (isTie()) {
+            isEnd = true;
+        }
+        computerTurn = false;
+    }, 1000);
 }
 
 function saveResult(winner) {
@@ -214,7 +223,9 @@ function clearCells() {
 function showGameBoard() {
     clearCells();
 
+    $(".header").hide("fade", {}, "slow", function () {});
     $("#game-menu").hide("fade", {}, "slow", function () {
+        $("#reset-btn").show("fade", {}, "slow", function () {});
         $("#game-board").show("fade", {}, "slow", function () {
             if (game.getPlayer1Icon() === icons[1]) {
                 setPlayerNames("Computer", "Human");
@@ -232,6 +243,7 @@ function setPlayerNames(player1, player2) {
 }
 
 function showGameMenu() {
+    $("#reset-btn").hide("fade", {}, "slow", function () {});
     $("#game-board").hide("fade", {}, "slow", function () {
         $("#game-menu").show("fade", {}, "slow");
     });
