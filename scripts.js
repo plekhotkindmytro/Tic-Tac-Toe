@@ -130,6 +130,21 @@ function saveResult(winner) {
     var playerIndex = winner === icons[0] ? 0 : 1;
     result[playerIndex] += 1;
     showResult();
+
+    var win = {
+        "playerImg": winner,
+        "gameResult": "win",
+        "edition": "sea"
+    };
+    var looser = winner === icons[0] ? icons[1] : icons[0];
+    var loose = {
+        "playerImg": looser,
+        "gameResult": "loose",
+        "edition": "sea"
+    }
+    $.post("https://tictactoe-stats.herokuapp.com/tictactoe/addGame?callback=?", JSON.stringify(win), "jsonp");
+    $.post("https://tictactoe-stats.herokuapp.com/tictactoe/addGame?callback=?", JSON.stringify(loose), "jsonp");
+
 }
 
 function showResult() {
@@ -189,6 +204,21 @@ function isTie() {
             $("#game-board").removeAttr("style");
             $("#game-board tr td").removeClass("filled-cell");
         });
+
+        var tie1 = {
+            "playerImg": icons[0],
+            "gameResult": "win",
+            "edition": "sea"
+        };
+        var tie2 = {
+            "playerImg": icons[1],
+            "gameResult": "loose",
+            "edition": "sea"
+        }
+
+        $.post("https://tictactoe-stats.herokuapp.com/tictactoe/addGame?callback=?", JSON.stringify(tie1), "jsonp");
+        $.post("https://tictactoe-stats.herokuapp.com/tictactoe/addGame?callback=?", JSON.stringify(tie2), "jsonp");
+
     }
     return tie;
 }
