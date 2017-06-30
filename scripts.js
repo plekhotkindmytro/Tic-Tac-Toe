@@ -142,8 +142,8 @@ function saveResult(winner) {
         "gameResult": "loose",
         "edition": "sea"
     }
-    $.post("https://tictactoe-stats.herokuapp.com/tictactoe/addGame?callback=?", JSON.stringify(win), "jsonp");
-    $.post("https://tictactoe-stats.herokuapp.com/tictactoe/addGame?callback=?", JSON.stringify(loose), "jsonp");
+    $.post("/tictactoe/addGame", JSON.stringify(win), "json");
+    $.post("/tictactoe/addGame", JSON.stringify(loose), "json");
 
 }
 
@@ -216,8 +216,8 @@ function isTie() {
             "edition": "sea"
         }
 
-        $.post("https://tictactoe-stats.herokuapp.com/tictactoe/addGame?callback=?", JSON.stringify(tie1), "jsonp");
-        $.post("https://tictactoe-stats.herokuapp.com/tictactoe/addGame?callback=?", JSON.stringify(tie2), "jsonp");
+        $.post("/tictactoe/addGame", JSON.stringify(tie1), "json");
+        $.post("/tictactoe/addGame", JSON.stringify(tie2), "json");
 
     }
     return tie;
