@@ -105,7 +105,7 @@ function playComputer() {
             isEnd = true;
         }
         computerTurn = false;
-    }, 1000);
+    }, 500);
 }
 
 function saveResult(winner) {
@@ -224,8 +224,10 @@ function showGameBoard() {
     clearCells();
 
     $(".header").hide("fade", {}, "slow", function () {});
+
     $("#game-menu").hide("fade", {}, "slow", function () {
         $("#reset-btn").show("fade", {}, "slow", function () {});
+        $("#results").show("fade", {}, "slow", function () {});
         $("#game-board").show("fade", {}, "slow", function () {
             if (game.getPlayer1Icon() === icons[1]) {
                 setPlayerNames("Computer", "Human");
@@ -233,6 +235,7 @@ function showGameBoard() {
             } else {
                 setPlayerNames("Human", "Computer");
             }
+
         });
     });
 }
@@ -244,6 +247,9 @@ function setPlayerNames(player1, player2) {
 
 function showGameMenu() {
     $("#reset-btn").hide("fade", {}, "slow", function () {});
+    $("#results").hide("fade", {}, "slow", function () {
+        setPlayerNames("", "");
+    });
     $("#game-board").hide("fade", {}, "slow", function () {
         $("#game-menu").show("fade", {}, "slow");
     });
