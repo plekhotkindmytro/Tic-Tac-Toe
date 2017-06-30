@@ -13,33 +13,11 @@
 </head>
 
 <body>
-
     <div class="content-wrapper">
-
+        <div id="global-stats"><a href="stats.html" target="_blank"><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i></a></div>
         <header class="header">
             <h1>Tic-Tac-Toe</h1>
-            <h3>Monkey vs banana</h3>
-            <!--
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-    <strong>Holy guacamole!</strong> You win!
-</div>
-<div class="alert alert-warning alert-dismissible fade show" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-    <strong>Holy guacamole!</strong> Tie!
-</div>
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-    <strong>Holy guacamole!</strong> Computer w!
-</div>
--->
-
+            <h3>Sea battle</h3>
         </header>
         <section id="game-wrapper">
             <div id="results" style="display:none;">
@@ -56,8 +34,16 @@
 
             <div id="game">
                 <div id="game-menu">
-                    <span>Choose</span>
+                    <span>Choose party</span>
                     <div id="icons">
+                        <div id="x-party">
+                            <div id="x-party-title">&times;</div>
+                            <div id="x-party-icons"></div>
+                        </div>
+                        <div id="o-party">
+                            <div id="o-party-title">&cir;</div>
+                            <div id="o-party-icons"></div>
+                        </div>
                     </div>
                 </div>
                 <table id="game-board" class="table table-bordered" style="display:none;">
@@ -77,20 +63,19 @@
                         <td id="8"></td>
                     </tr>
                 </table>
-                <button id="reset-btn" class="btn btn-outline-danger" type="button" style="display:none;">Reset all</button>
+                <button id="reset-btn" class="btn btn-warning" type="button" style="display:none;">Reset all</button>
             </div>
         </section>
-
-
     </div>
+    <footer class="footer">
+        <div>Developed by <a href="https://plekhotkindmytro-portfolio.herokuapp.com">Dmytro Plekhotkin</a>.</div>
+        <div>Icons made by <a href="http://www.freepik.com/">Freepik</a> from <a href="www.flaticon.com">www.flaticon.com</a></div>
+    </footer>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="jquery-3.2.1.min.js"></script>
     <script src="jquery-ui.min.js"></script>
-
     <script src="tether.min.js"></script>
     <script src="bootstrap-4.0.0-alpha.6/js/bootstrap.min.js"></script>
-    <script src="creatures.js"></script>
-    <script src="food.js"></script>
     <script src="scripts.js"></script>
 </body>
 

@@ -6,7 +6,25 @@ $(document).ready(function () {
 
 });
 
-var icons = ["🐒", "🍌"];
+var x = [
+    "img/x/dolphin.svg",
+    "img/x/fish-4.svg",
+    "img/x/hummerhead.svg",
+    "img/x/medusa.svg",
+    "img/x/octopus.svg",
+    "img/x/seal.svg"
+
+];
+var o = [
+    "img/o/eel.svg",
+    "img/o/fish-5.svg",
+    "img/o/fish-6.svg",
+    "img/o/fish-7.svg",
+    "img/o/swordfish.svg",
+    "img/o/turtle.svg"
+];
+
+var icons = [];
 var board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
 var result = [0, 0];
 
@@ -58,7 +76,7 @@ function playSymbol() {
         return;
     }
 
-    $(this).html(game.getPlayer1Icon());
+    $(this).html('<img class="cell-img" src="{icon}">'.replace("{icon}", game.getPlayer1Icon()));
     var pos = $(this).attr("id");
     $("#" + pos).addClass("filled-cell");
     board[pos] = game.getPlayer1Icon();
@@ -93,7 +111,7 @@ function playComputer() {
         }, []);
 
         var rand = clearBoard[Math.floor(Math.random() * clearBoard.length)];
-        $("#" + rand).html(game.getPlayer2Icon());
+        $("#" + rand).html('<img src="{icon}">'.replace("{icon}", game.getPlayer2Icon()));
         $("#" + rand).addClass("filled-cell");
         board[rand] = game.getPlayer2Icon();
 
@@ -182,8 +200,15 @@ function isLineCrossed(condition) {
 function savePlayerIcon(callback) {
 
     return function () {
-        var player1Icon = $(this).text();
-        var player2Icon = player1Icon === icons[0] ? icons[1] : icons[0];
+        var player1Icon = $(this).attr("src");
+        var player2Icon;
+        if (player1Icon.indexOf('/x/') >= 0) {
+            player2Icon = o[Math.floor(Math.random() * o.length)];
+            icons.push(player1Icon, player2Icon);
+        } else {
+            player2Icon = x[Math.floor(Math.random() * x.length)];
+            icons.push(player2Icon, player1Icon);
+        }
         game.setPlayer1Icon(player1Icon);
         game.setPlayer2Icon(player2Icon);
 
@@ -202,6 +227,7 @@ function resetAll(callback) {
 
 function clearResult() {
     result = [0, 0];
+    icons = [];
     $("#player1-score").text(0);
     $("#player2-score").text(0);
     isEnd = false;
@@ -256,9 +282,19 @@ function showGameMenu() {
 }
 
 function showIconsToChoose() {
-    var iconsTemplate = '<span class="player-icon">{icon1}</span> or <span class="player-icon">{icon2}</span>';
-    iconsTemplate = iconsTemplate.replace("{icon1}", icons[0]).replace("{icon2}", icons[1]);
-    $("#icons").html(iconsTemplate);
+    /* var iconsTemplate = '<img class="player-icon" src="{icon1}"> or <img class="player-icon" src="{icon2}">';
+ iconsTemplate = iconsTemplate.replace("{icon1}", icons[0]).replace("{icon2}", icons[1]);*/
+
+    x.forEach(function (e) {
+        $("#x-party-icons").append("<img class='x-icon player-icon' src='" + e + "'>");
+    });
+
+    o.forEach(function (e) {
+        $("#o-party-icons").append("<img class='o-icon player-icon' src='" + e + "'>");
+    });
+
+
+    //$("#icons").html(iconsTemplate);
 }
 
 
