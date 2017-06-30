@@ -45,7 +45,14 @@ var Game = function () {
 
 var game = new Game();
 
+var isEnd = false;
+
 function playSymbol() {
+    if (isEnd) {
+        clearCells();
+        return;
+    }
+
     $(this).html(game.getPlayer1Icon());
     var pos = $(this).attr("id");
     $("#" + pos).addClass("filled-cell");
@@ -53,12 +60,10 @@ function playSymbol() {
 
     var winner = getWinner();
     if (winner) {
-        alert(winner);
         saveResult(winner);
-        clearCells();
+        isEnd = true;
     } else if (isTie()) {
-        alert("Tie!");
-        clearCells();
+        isEnd = true;
     } else {
         playComputer();
     }
@@ -66,6 +71,11 @@ function playSymbol() {
 }
 
 function playComputer() {
+    if (isEnd) {
+        return;
+    }
+
+
     var clearBoard = board.reduce(function (prev, curr, i) {
         if (curr === 0) {
             prev.push(i);
@@ -82,12 +92,10 @@ function playComputer() {
 
     var winner = getWinner();
     if (winner) {
-        alert(winner);
         saveResult(winner);
-        clearCells();
+        isEnd = true;
     } else if (isTie()) {
-        alert("Tie!");
-        clearCells();
+        isEnd = true;
     }
 }
 
@@ -118,7 +126,20 @@ function getWinner() {
 
     winConditions.some(function (condition) {
         if (isLineCrossed(condition)) {
+            $("#" + condition[0]).css("background-color", "white");
+            $("#" + condition[1]).css("background-color", "white");
+            $("#" + condition[2]).css("background-color", "white");
+            $("#" + condition[0]).effect("pulsate", {}, 1000, function () {
+                $("#" + condition[0]).removeAttr("style");
+            });
+            $("#" + condition[1]).effect("pulsate", {}, 1000, function () {
+                $("#" + condition[1]).removeAttr("style");
+            });
+            $("#" + condition[2]).effect("pulsate", {}, 1000, function () {
+                $("#" + condition[2]).removeAttr("style");
+            });
             winner = board[condition[0]];
+            $("#game-board tr td").removeClass("filled-cell");
             return true;
         }
     });
@@ -134,17 +155,24 @@ function isTie() {
             break;
         }
     }
+
+    if (tie) {
+        $("#game-board").css("background-color", "white");
+        $("#game-board").effect("pulsate", {}, 1000, function () {
+            $("#game-board").removeAttr("style");
+            $("#game-board tr td").removeClass("filled-cell");
+        });
+    }
     return tie;
 }
 
 function isLineCrossed(condition) {
-    return board[condition[0]] === board[condition[1]] && board[condition[1]] === board[condition[2]];
+    return board[condition[0]] !== 0 && board[condition[0]] === board[condition[1]] && board[condition[1]] === board[condition[2]];
 }
 
 function savePlayerIcon(callback) {
 
     return function () {
-
         var player1Icon = $(this).text();
         var player2Icon = player1Icon === icons[0] ? icons[1] : icons[0];
         game.setPlayer1Icon(player1Icon);
@@ -156,9 +184,8 @@ function savePlayerIcon(callback) {
 
 function resetAll(callback) {
     return function () {
-        clearCells();
         clearResult();
-
+        clearCells();
 
         callback();
     }
@@ -168,6 +195,7 @@ function clearResult() {
     result = [0, 0];
     $("#player1-score").text(0);
     $("#player2-score").text(0);
+    isEnd = false;
 }
 
 function clearCells() {
@@ -175,6 +203,12 @@ function clearCells() {
     $("#game-board tr td").removeClass("filled-cell");
     $("#game-board tr td").removeClass("winning-cell");
     board = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+    if (isEnd) {
+        isEnd = false;
+        if (game.getPlayer1Icon() === icons[1]) {
+            playComputer();
+        }
+    }
 }
 
 function showGameBoard() {
@@ -204,8 +238,16 @@ function showGameMenu() {
 }
 
 function showIconsToChoose() {
-
     var iconsTemplate = '<span class="player-icon">{icon1}</span> or <span class="player-icon">{icon2}</span>';
     iconsTemplate = iconsTemplate.replace("{icon1}", icons[0]).replace("{icon2}", icons[1]);
     $("#icons").html(iconsTemplate);
+}
+
+
+function winAlert(winner) {
+
+}
+
+function tieAlert() {
+
 }
