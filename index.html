@@ -14,10 +14,15 @@
 
 <body>
     <div class="content-wrapper">
-        <div id="global-stats"><a href="stats.html" target="_blank"><i class="fa fa-info-circle fa-2x" aria-hidden="true"></i></a></div>
+        <div id="global-links">
+            <a href="stats.html" target="_blank"><i class="fa fa-bar-chart" aria-hidden="true"></i></a>
+        </div>
+        <div id="edition-switch">
+        </div>
+
         <header class="header">
             <h1>Tic-Tac-Toe</h1>
-            <h3>Sea battle</h3>
+            <h3 id="header-subtitle">Sea battle</h3>
         </header>
         <section id="game-wrapper">
             <div id="results" style="display:none;">
@@ -63,13 +68,25 @@
                         <td id="8"></td>
                     </tr>
                 </table>
+
+                <div id="end-game-popup" style="display:none;">
+                    <div>
+                        <button id="play-again-btn" class="btn btn-info" type="button">Play again</button>
+                    </div>
+                    <div>
+                        <a id="tweet" href="https://twitter.com/share" class="twitter-share-button" data-text="Play Tic-Tac-Toe online with fish! :) 🐠 http://pic.twitter.com/ErCQkR8vYC 🐟" data-url="https://tictactoe-sea.herokuapp.com" data-hashtags="tictactoe" data-lang="en" data-show-count="false">
+                Tweet
+            </a>
+                        <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                </div>
                 <button id="reset-btn" class="btn btn-warning" type="button" style="display:none;">Reset all</button>
             </div>
         </section>
     </div>
     <footer class="footer">
         <div>Developed by <a href="https://plekhotkindmytro-portfolio.herokuapp.com">Dmytro Plekhotkin</a>.</div>
-        <div>Icons made by <a href="http://www.freepik.com/">Freepik</a> from <a href="www.flaticon.com">www.flaticon.com</a></div>
+        <div>Icons made by <a href="http://www.freepik.com/">Freepik</a> from <a href="http://www.flaticon.com">www.flaticon.com</a></div>
     </footer>
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="jquery-3.2.1.min.js"></script>
